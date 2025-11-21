@@ -1,0 +1,30 @@
+# Python dependencies for EEGNet BCI on Jetson Xavier NX
+# Install with: pip3 install --user -r requirements_jetson.txt
+
+# Core numerical libraries
+numpy==1.19.4
+scipy==1.7.3
+scikit-learn==1.0.2
+
+# Deep learning frameworks
+# TensorFlow should be installed separately using NVIDIA's wheel for Jetson
+# See jetson_setup.sh or install manually:
+# pip3 install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v46 tensorflow==2.7.0+nv22.1
+
+keras==2.6.0
+
+# ONNX Runtime (for efficient inference)
+# GPU version for Jetson (if available)
+onnxruntime-gpu==1.12.1; platform_machine == "aarch64"
+# Fallback to CPU version
+onnxruntime==1.12.1; platform_machine != "aarch64"
+
+# Data preprocessing
+h5py==3.1.0
+
+# Utilities
+matplotlib==3.5.1
+Pillow==9.0.1
+
+# Optional: For monitoring and profiling
+# jetson-stats  # Install separately: sudo pip3 install jetson-stats

@@ -1,0 +1,67 @@
+EEGNet BCI - Jetson Xavier NX Deployment
+=========================================
+
+QUICK START GUIDE
+-----------------
+
+1. TRANSFER FILES TO JETSON
+   
+   Option A - SCP (from development machine):
+   $ scp -r eegnet_jetson_deployment_* jetson@<jetson-ip>:~/
+   
+   Option B - USB Drive:
+   - Copy this folder to USB drive
+   - Mount on Jetson and copy to home directory
+
+2. RUN SETUP SCRIPT
+   
+   $ cd ~/eegnet_jetson_deployment_*/
+   $ chmod +x jetson_setup.sh
+   $ ./jetson_setup.sh
+   
+   This will install all dependencies (~30-60 minutes)
+
+3. RUN INFERENCE DEMO
+   
+   $ cd ~/eegnet_jetson_deployment_*/
+   $ python3 jetson_inference.py --model models/output.onnx --mode demo
+
+4. BENCHMARK PERFORMANCE
+   
+   $ python3 jetson_inference.py --model models/output.onnx --mode benchmark
+
+5. ENABLE MAX PERFORMANCE (Optional)
+   
+   $ sudo nvpmodel -m 0
+   $ sudo jetson_clocks
+
+TROUBLESHOOTING
+---------------
+
+If you encounter issues, see docs/DEPLOYMENT_JETSON.md for detailed instructions.
+
+Common commands:
+- Check GPU: tegrastats
+- Monitor system: jtop (install: sudo pip3 install jetson-stats)
+- Check TensorFlow: python3 -c "import tensorflow as tf; print(tf.__version__)"
+
+DIRECTORY STRUCTURE
+-------------------
+
+eegnet_jetson_deployment_*/
+├── models/
+│   └── output.onnx              # ONNX model
+├── docs/
+│   ├── DEPLOYMENT_JETSON.md     # Full deployment guide
+│   └── README.md                # Original README
+├── eeg_reduction.py             # Preprocessing
+├── models.py                    # Model architecture
+├── jetson_inference.py          # Inference script
+├── jetson_setup.sh              # Setup script
+├── requirements_jetson.txt      # Python dependencies
+└── QUICKSTART.txt               # This file
+
+For detailed documentation, see docs/DEPLOYMENT_JETSON.md
+
+Copyright (C) 2020 ETH Zurich, Switzerland
+SPDX-License-Identifier: Apache-2.0
