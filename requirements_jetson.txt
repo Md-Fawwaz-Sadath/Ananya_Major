@@ -1,0 +1,19 @@
+# Requirements for Jetson Xavier NX deployment
+# Install with: pip3 install -r requirements_jetson.txt
+
+# Core dependencies (compatible with JetPack 4.6+)
+numpy==1.18.5
+scipy==1.4.1
+scikit-learn==0.22.1
+h5py==2.10.0
+
+# TensorFlow and Keras (for JetPack 4.6)
+# Note: TensorFlow should be installed from NVIDIA's repository:
+# sudo pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v46 tensorflow==1.15.5+nv20.12
+# keras==2.2.4
+
+# Optional: For reading EDF files (if needed)
+# pyedflib==0.1.15
+
+# Optional: For ONNX Runtime (if using ONNX models)
+# onnxruntime-gpu==1.8.0  # Requires CUDA support
